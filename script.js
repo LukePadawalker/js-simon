@@ -50,6 +50,11 @@ console.log("js ok");
 // - prendiamo la cella (secondsContainer) che contiene il numero dei secondi dal dom e la incapsuliamo dentro una variabile
 let secondsContainer = document.getElementById('secondscontainer'); 
 const numbersContainer = document.getElementById("numbers");
+const numeroDiNumeri = 5;
+let score;
+
+// flag "timeout" per attivare i prompt
+let timeout = false;
 
 
 // - creiamo un array con 5 numeri casuali;
@@ -63,11 +68,9 @@ const randomNumGenerator = () => {
 }
 
 // - chiamiamo 5 volte questa funzione
-randomNumGenerator();
-randomNumGenerator();
-randomNumGenerator();
-randomNumGenerator();
-randomNumGenerator();
+for(let i = 0;i < numeroDiNumeri;i++){
+  randomNumGenerator();
+}
 
 
 // bonus: aggiungi un selettore di difficolta?
@@ -93,28 +96,71 @@ for (let i = 0;i < numeriGiusti.length; i++){
 
 }
 
-// - creiamo il timer:
-// - creiamo una variabile const secondi = 30;
-// - creiamo una funzione ( const timerchanger = setInterval() )che ogni 1000ms esegua una funzione:
-//   - modifichiamo il testo di secondsContainer e ci mettiamo dentro --secondi;
-//   if (secondi <= 0){
-//      clearInterval(timerchanger)
-//      return;
-//   }
-
+// - creiamo il timer
 
 // - creiamo una variabile secondi;
-let seconds = 30;
+let seconds = 2;
 secondsContainer.innerText = seconds;
 
 
 // - creiamo una funzione timerchanger che ogni 1000ms diminuisca il numero di 1:
 let timerChanger = () => {
+  // diminuitamo il numero dentro il contenitore di 1
   secondsContainer.innerText = --seconds;
-  return secondsContainer;
+
+  // se i secondi arrivano a 0, fermiamo la funzione
+  if (seconds <= 0){
+    // fermiamo il ciclo
+    clearInterval(timer);
+    // scriviamo 0 nel contenitore
+    secondsContainer.innerText = seconds;
+
+    // attiviamo il flag
+    timeout = true;
+  }
+
+  // ridiamo i valori fuori dalla funzione
+  return timeout;
+  return seconds;
 }
 
-setInterval(timerChanger, 1000);
+// attiviamo il timer
+const timer = setInterval(timerChanger, 1000);
+
+// - creiamo un array che conterra i numeri che l'utente ci ha dato
+let numeriUtente = [];
+console.log(numeriUtente);
+
+// - chiediamo all'utente i numeri dopo 30 secondi
+setTimeout(function(){
+
+  // per ogni numero che riceviamo, inseriamolo dentro l'array
+  for(let i = 0;i < numeroDiNumeri; i++){
+    // chiediamo un numero all'utente
+    const num = prompt("inserisci un numero");
+
+    
+    // controlliamo se il numero fa parte dell'array con i numeri giusti
+    if (numeriGiusti.includes(num)){
+      // inseriamo il numero nell'array numeriUtente
+      numeriUtente.push(parseInt(num));
+    }
+    
+    console.log(i);
+    console.log(score);
+    
+  }
+  
+  console.log(numeriUtente);
+  alert(`hai totalizzato ${score} punti`);
+}, 2100);
+
+// creiamo una funzione e chiediamo all'utente i cinque numeri e aggiungiamo ogni numero all'array numeriUtente
+
+
+
+
+
 
 
 
