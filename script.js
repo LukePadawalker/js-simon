@@ -127,10 +127,16 @@ let timerChanger = () => {
 const timer = setInterval(timerChanger, 1000);
 
 
+// facciamo sparire i numeri 
+setTimeout(function(){
+   const removeNumbers = numbersContainer.classList.add("d-none");
+
+}, 2100)
+
+
 // - chiediamo all'utente i numeri dopo 30 secondi
 setTimeout(function(){
-  
-  
+
   // - creiamo un array che conterra i numeri che l'utente ci ha dato
   let numeriUtente = [];
   let score = 0;
@@ -164,7 +170,7 @@ setTimeout(function(){
 
   // mostriamo all'utente il risultato finale
   alert(`hai totalizzato ${score} punti`);
-}, 2100);
+}, 2500);
 
 
 
