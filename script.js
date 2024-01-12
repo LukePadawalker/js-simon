@@ -69,8 +69,11 @@ randomNumGenerator();
 
 // bonus: aggiungi un selettore di difficolta?
 
-
+// controllore 
 console.log(numeriGiusti);
+
+
+
 
 
 
