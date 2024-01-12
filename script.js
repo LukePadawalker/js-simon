@@ -51,7 +51,6 @@ console.log("js ok");
 let secondsContainer = document.getElementById('secondscontainer'); 
 const numbersContainer = document.getElementById("numbers");
 const numeroDiNumeri = 5;
-let score;
 
 // flag "timeout" per attivare i prompt
 let timeout = false;
@@ -127,35 +126,46 @@ let timerChanger = () => {
 // attiviamo il timer
 const timer = setInterval(timerChanger, 1000);
 
-// - creiamo un array che conterra i numeri che l'utente ci ha dato
-let numeriUtente = [];
-console.log(numeriUtente);
 
 // - chiediamo all'utente i numeri dopo 30 secondi
 setTimeout(function(){
+  
+  
+  // - creiamo un array che conterra i numeri che l'utente ci ha dato
+  let numeriUtente = [];
+  let score = 0;
+  console.log(numeriUtente);
+
 
   // per ogni numero che riceviamo, inseriamolo dentro l'array
   for(let i = 0;i < numeroDiNumeri; i++){
     // chiediamo un numero all'utente
     const num = prompt("inserisci un numero");
+    numeriUtente.push(parseInt(num));
 
-    
     // controlliamo se il numero fa parte dell'array con i numeri giusti
-    if (numeriGiusti.includes(num)){
+    if (numeriGiusti.includes(num, i)){
       // inseriamo il numero nell'array numeriUtente
-      numeriUtente.push(parseInt(num));
     }
-    
-    console.log(i);
-    console.log(score);
-    
+    console.log(numeriUtente);
+
+      
   }
-  
+  // controlliamo se i numeri dentro l'array numeriUtente appartengono all'array numeriGiusti
+  for (let j = 0;j < numeroDiNumeri; j++){
+    if(numeriGiusti.includes(numeriUtente[j])){
+      score += 1;
+    }
+  }
+
+
+  console.log(score);
   console.log(numeriUtente);
+
+  // mostriamo all'utente il risultato finale
   alert(`hai totalizzato ${score} punti`);
 }, 2100);
 
-// creiamo una funzione e chiediamo all'utente i cinque numeri e aggiungiamo ogni numero all'array numeriUtente
 
 
 
